@@ -9,4 +9,4 @@ This directive allows you to add ueditor to  your form textarea.
 
 ## Problem
 
-	Autosave function was lost caused by the dynamic editor ID create.
+	Data binding does not work in source code mode.

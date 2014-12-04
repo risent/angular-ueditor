@@ -5,7 +5,11 @@ angular.module('risent.ueditor',[]).
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, element, attrs, ngModel) {
-                var editor = new UE.ui.Editor();
+                var options = {};
+                if (attrs.ueditor) {
+                    options = scope.$eval(attrs.ueditor);
+                }
+                var editor = new UE.ui.Editor(options);
                 editor.render(element[0]);
 
                 /* handle when ngModel is assign from promise */
@@ -49,7 +53,7 @@ angular.module('risent.ueditor',[]).
                     })
                 }
 
-                editor.on('contentChange', function () {
+                editor.on('contentchange', function () {
                     element.val(editor.getContent());
                     ngModel.$setViewValue(editor.getContent());
                     if (!scope.$root.$$phase)
